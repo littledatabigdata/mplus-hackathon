@@ -15,17 +15,29 @@ const colours = [
   { class: 'blue f' },
   { class: 'blue f' },
   { class: 'blue f' },
-  { class: 'bystander m' },
-  { class: 'bystander m' },
-  { class: 'bystander m' },
-  { class: 'bystander m' },
-  { class: 'bystander f' },
-  { class: 'bystander f' },
-  { class: 'bystander f' },
+  { class: 'neutral m' },
+  { class: 'neutral m' },
+  { class: 'neutral m' },
+  { class: 'neutral m' },
+  { class: 'neutral f' },
+  { class: 'neutral f' },
+  { class: 'neutral f' },
   { class: 'assassin' }
 ];
 
 const extraColours = [{ class: 'red d' }, { class: 'blue d' }];
+
+let redRemaining = 0;
+let blueRemaining = 0;
+let gameEnded = false;
+
+function newGame() {
+  redRemaining = 0;
+  blueRemaining = 0;
+  gameEnded = false;
+  clearBoard();
+  getRandomImages().then(imageIds => generateBoard(imageIds));
+}
 
 function shuffle(array) {
   // todo: shuffle using a seed
@@ -51,12 +63,28 @@ function getNewGameColours() {
   return newColours;
 }
 
+function initializeRemaining(newColours) {
+  newColours.forEach(colour => {
+    if (colour.class[0] === 'r') {
+      redRemaining += 1;
+    } else if (colour.class[0] === 'b') {
+      blueRemaining += 1;
+    }
+  });
+}
+
+function clearBoard() {
+  let gameBoard = document.getElementById('game-board');
+  while ((last = gameBoard.lastChild)) gameBoard.removeChild(last);
+}
+
 function generateBoard(imageIds) {
   console.log('generating board');
   let gameBoard = document.getElementById('game-board');
   let newColours = getNewGameColours();
-  console.log('new colors before');
-  console.log(newColours);
+  initializeRemaining(newColours);
+  document.getElementById('red-counter').innerHTML = redRemaining;
+  document.getElementById('blue-counter').innerHTML = blueRemaining;
 
   for (var i = 0; i < 5; ++i) {
     let grid = document.createElement('div');
@@ -84,9 +112,6 @@ function generateBoard(imageIds) {
     grid.appendChild(gridInner);
     gameBoard.appendChild(grid);
   }
-
-  console.log('new colors');
-  console.log(newColours);
 }
 
 function createOffset() {
@@ -100,7 +125,7 @@ function createOffset() {
 
 function createCard(id, colour) {
   let card = document.createElement('div');
-  card.setAttribute('class', 'mdc-card active ' + colour.class);
+  card.setAttribute('class', 'mdc-card ' + colour.class);
 
   let cardAction = document.createElement('mdc-card');
   cardAction.setAttribute('class', 'mdc-card__primary-action');
@@ -118,4 +143,29 @@ function createCard(id, colour) {
   return card;
 }
 
-window.onload = getRandomImages().then(imageIds => generateBoard(imageIds));
+function getGameInfo(words) {
+  for (var i = 0; i < 25; i++) {
+    $.each(words, function(n, v) {
+      if (v.id == urlCode.substring(i * 4, i * 4 + 2)) {
+        newWords.push(v);
+      }
+    });
+    $.each(allColours, function(n, v) {
+      if (v.id == urlCode.substring(i * 4 + 2, i * 4 + 4)) {
+        newColours.push(v);
+
+        if (v.id === '25') {
+          redRemaining += 1;
+        }
+        if (v.id === '26') {
+          blueRemaining += 1;
+        }
+      }
+    });
+  }
+}
+
+window.onload = (function() {
+  document.getElementById('newgame-button').addEventListener('click', newGame);
+  newGame();
+})();
