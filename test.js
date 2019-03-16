@@ -125,24 +125,28 @@ function createOffset() {
 
 function onCardClicked(colour) {
   return function() {
-    if (colour.class[0] === 'r') {
-      redRemaining -= 1;
-      document.getElementById('red-counter').innerHTML = redRemaining;
-      if (redRemaining === 0 && gameEnded === false) {
-        alert('Red Wins!');
-        gameEnded = true;
-      }
-    } else if (colour.class[0] === 'b') {
-      blueRemaining -= 1;
-      document.getElementById('blue-counter').innerHTML = blueRemaining;
-      if (blueRemaining === 0 && gameEnded === false) {
-        alert('Blue Wins!');
-        gameEnded = true;
-      }
-    } else if (colour.class[0] === 'a') {
-      if (gameEnded === false) {
-        alert('You were killed by the assassin.');
-        gameEnded = true;
+    if (!this.classList.contains('active')) {
+      this.classList.add('active');
+
+      if (colour.class[0] === 'r') {
+        redRemaining -= 1;
+        document.getElementById('red-counter').innerHTML = redRemaining;
+        if (redRemaining === 0 && gameEnded === false) {
+          alert('Red Wins!');
+          gameEnded = true;
+        }
+      } else if (colour.class[0] === 'b') {
+        blueRemaining -= 1;
+        document.getElementById('blue-counter').innerHTML = blueRemaining;
+        if (blueRemaining === 0 && gameEnded === false) {
+          alert('Blue Wins!');
+          gameEnded = true;
+        }
+      } else if (colour.class[0] === 'a') {
+        if (gameEnded === false) {
+          alert('You were killed by the assassin.');
+          gameEnded = true;
+        }
       }
     }
   };
@@ -193,5 +197,6 @@ function getGameInfo(words) {
 
 window.onload = (function() {
   document.getElementById('newgame-button').addEventListener('click', newGame);
+  document.getElementById('check-button').addEventListener('click', newGame);
   newGame();
 })();

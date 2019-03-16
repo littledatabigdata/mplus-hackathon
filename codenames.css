@@ -279,3 +279,11 @@ h3 {
 .mdc-card__primary-action {
   max-height: 300px;
 }
+
+.mdc-card {
+  height: 200px;
+}
+
+.mdc-card.active img {
+  display: none;
+}
