@@ -16,6 +16,6 @@ const payload = {
 aj.post('/', payload)
   .then(res => {
       console.log(res)
-  }).error(err => {
+  }).catch(err => {
       console.log(err)
   })
