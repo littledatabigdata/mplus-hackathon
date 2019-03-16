@@ -30,6 +30,7 @@ const extraColours = [{ class: 'red d' }, { class: 'blue d' }];
 let redRemaining = 0;
 let blueRemaining = 0;
 let gameEnded = false;
+let showSpymaster = false;
 
 function newGame() {
   redRemaining = 0;
@@ -108,7 +109,7 @@ function generateBoard(imageIds) {
 
 function onCardClicked(colour) {
   return function() {
-    if (!this.classList.contains('active')) {
+    if (!showSpymaster && !this.classList.contains('active')) {
       this.classList.add('active');
 
       if (colour.class[0] === 'r') {
@@ -163,7 +164,6 @@ window.onload = (function() {
   document
     .getElementById('newgame-button')
     .addEventListener('click', function() {
-      console.log('newgasa');
       document.getElementById('modal-wrap').style.display = 'flex';
     });
   Array.from(document.getElementsByClassName('modal-close')).forEach(elem => {
@@ -172,9 +172,9 @@ window.onload = (function() {
     });
   });
   document.getElementById('check-button').addEventListener('click', function() {
+    showSpymaster = !showSpymaster;
     this.classList.toggle('button-on');
-    this.innerHTML =
-      this.innerHTML === 'Show Spymaster' ? 'Show Player' : 'Show Spymaster';
+    this.innerHTML = showSpymaster ? 'Show Spymaster' : 'Show Player';
     document.getElementById('game-board').classList.toggle('check');
   });
   document

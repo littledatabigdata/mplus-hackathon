@@ -8,12 +8,13 @@ let aj = axios.create({
 });
 
 function getRandomImages(category = 'Photography', count = 25, seed = false) {
+  let categoryOpt = category !== 'all' ? `category: "${category}"` : '';
   let shuffleSeed = seed ? `shuffleSeed: "${seed}",` : '';
   // shuffleSeed
   // filter by constituents
   const payload = {
     query: `{
-            objects (per_page: ${count}, shuffle: true, ${shuffleSeed} category: "${category}") {
+            objects (per_page: ${count}, shuffle: true, ${shuffleSeed} ${categoryOpt}) {
               id
               objectNumber
               title
