@@ -109,7 +109,7 @@ function createCard(id, colour) {
   let img = new Image();
   img.setAttribute('class', 'img-card');
   getImageUrl(id).then(url => {
-    console.log(url);
+    // console.log(url);
     img.src = url;
   });
   cardAction.appendChild(img);

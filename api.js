@@ -12,10 +12,13 @@ let collections = axios.create({
     responseType: 'document'
 })
 
-function getRandomImages(count=25) {
+function getRandomImages(category="Photography", count=25, seed=false) {
+    let shuffleSeed = seed ? `shuffleSeed: ${seed},` : "";
+    // shuffleSeed
+    // filter by constituents
     const payload = {
         query: `{
-            objects (per_page: ${count}, shuffle: true, category: "Photography") {
+            objects (per_page: ${count}, shuffle: true, ${shuffleSeed} category: ${category}) {
               id
               objectNumber
               title
@@ -44,13 +47,38 @@ function getRandomImages(count=25) {
             return images.map(imgData => imgData.id)
         }
     })
-  }
+}
   
-  function getImageUrl(id) {
+function getImageUrl(id) {
     return collections.get(`/${id}`).then(result => {
         if (result.status === 200) {
             let document = result.data
             return document.head.querySelector('meta[property="og:image"]').content
         }
     })
-  }
+}
+
+function getCategories() {
+    const payload = {
+        query: `{
+            categories(sort_field: "count") {
+                title
+                count
+              }
+        }`
+    }
+
+    return aj.post('/', payload).then(res => {
+        if (res.status === 200) {
+            let categories = res.data.data.categories
+
+            return categories.filter(category => category.count >= 200)
+                .filter(category => category.title !== "Video")
+                .map(category => category.title)
+        }
+    })
+}
+
+getCategories().then(cats => {
+    console.log(cats)
+})
