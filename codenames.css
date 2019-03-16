@@ -9,14 +9,18 @@ h3 {
 }
 #game-board {
   width: 100%;
-  height: calc(100% - ((100% / 6) + 2px));
+  height: calc(100% - ((100% / 6) - 40px));
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-auto-flow: column;
+  min-height: 0;
+  min-width: 0;
 }
 .mdc-card {
+  overflow: hidden;
+  min-width: 0;
   background: #fdf5e6;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
@@ -28,12 +32,6 @@ h3 {
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
 }
-/*
-.img-card {
-  width: 100%;
-  height: 100%;
-}
-*/
 .mdc-card.active img {
   display: none;
 }
@@ -133,8 +131,8 @@ h3 {
 #bottom {
   float: left;
   width: 100%;
-  height: calc((100% / 6) + 2px);
-  margin: 1px 0 0 0;
+  height: calc((100% / 6) - 50px);
+  margin-top: 5px;
 }
 .half {
   float: left;
@@ -151,9 +149,10 @@ h3 {
 #red-remaining,
 #blue-remaining {
   color: #fff;
-  margin: 4px;
+  margin-top: 3px;
+  margin-right: 10px;
   width: calc((100% / 2.5) - 8px);
-  height: calc(100% - 8px);
+  height: 100%;
   float: left;
   border-radius: 5px;
   display: flex;
@@ -165,14 +164,14 @@ h3 {
 #red-counter,
 #blue-counter {
   display: block;
-  width: 100%;
   font-size: 30px;
 }
 #check-button {
   color: #fff;
-  margin: 4px;
+  margin-top: 3px;
+  margin-right: 10px;
   width: calc((100% / 2.5) - 8px);
-  height: calc(100% - 8px);
+  height: 100%;
   float: right;
   background: #ffa500;
   cursor: pointer;
@@ -187,9 +186,9 @@ h3 {
 }
 #newgame-button {
   color: #246;
-  margin: 4px;
+  margin-top: 3px;
   width: calc((100% / 2.5) - 8px);
-  height: calc(100% - 8px);
+  height: 100%;
   float: right;
   background: #e2eef9;
   cursor: pointer;
