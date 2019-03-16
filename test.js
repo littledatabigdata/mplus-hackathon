@@ -123,9 +123,35 @@ function createOffset() {
   return offset;
 }
 
+function onCardClicked(colour) {
+  return function() {
+    if (colour.class[0] === 'r') {
+      redRemaining -= 1;
+      document.getElementById('red-counter').innerHTML = redRemaining;
+      if (redRemaining === 0 && gameEnded === false) {
+        alert('Red Wins!');
+        gameEnded = true;
+      }
+    } else if (colour.class[0] === 'b') {
+      blueRemaining -= 1;
+      document.getElementById('blue-counter').innerHTML = blueRemaining;
+      if (blueRemaining === 0 && gameEnded === false) {
+        alert('Blue Wins!');
+        gameEnded = true;
+      }
+    } else if (colour.class[0] === 'a') {
+      if (gameEnded === false) {
+        alert('You were killed by the assassin.');
+        gameEnded = true;
+      }
+    }
+  };
+}
+
 function createCard(id, colour) {
   let card = document.createElement('div');
   card.setAttribute('class', 'mdc-card ' + colour.class);
+  card.addEventListener('click', onCardClicked(colour));
 
   let cardAction = document.createElement('mdc-card');
   cardAction.setAttribute('class', 'mdc-card__primary-action');
