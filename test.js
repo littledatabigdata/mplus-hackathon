@@ -36,7 +36,12 @@ function newGame() {
   blueRemaining = 0;
   gameEnded = false;
   clearBoard();
-  getRandomImages().then(imageIds => generateBoard(imageIds));
+  const categoryList = document.getElementById('categories-list');
+  const category = categoryList.options[categoryList.selectedIndex].value;
+  const seedInput = document.getElementById('seed-input').value;
+  getRandomImages(category, 25, seedInput).then(imageIds =>
+    generateBoard(imageIds)
+  );
 }
 
 function shuffle(array, seed) {

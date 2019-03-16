@@ -36,15 +36,19 @@
     <div id="modal-wrap">
       <div class="modal-close"></div>
       <div class="modal-new-game">
-        <h3>Are you sure you want to start a new game?</h3>
-        <div class="wordlist-wrap">
-          <span>Word list:</span>
-          <select class="select-words">
-            <option value="codenames">Codenames</option>
-            <option value="deepUndercover">Deep Undercover</option>
-            <option value="duet">Duet</option>
+        <h3>Start a new game</h3>
+        <div class="mdc-select wordlist-wrap">
+          <select id="categories-list" class="mdc-select__native-control">
+            <option value="all">All</option>
           </select>
+          <label class="mdc-floating-label">Category:</label>
+          <div class="mdc-line-ripple"></div>
         </div>
+        <label class="mdc-text-field">
+          <input type="text" id="seed-input" class="mdc-text-field__input" />
+          <span class="mdc-floating-label">Seed</span>
+          <div class="mdc-text-field__bottom-line"></div>
+        </label>
         <button id="button-newgame">New Game</button>
         <div class="modal-close">&times;</div>
       </div>

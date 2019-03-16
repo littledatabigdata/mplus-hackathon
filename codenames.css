@@ -235,7 +235,7 @@ h3 {
   background: #fff;
   padding: 20px 40px;
   max-width: 70vw;
-  max-height: 70vh;
+  max-height: 100vh;
   position: relative;
 }
 #modal-wrap .modal-new-game .wordlist-wrap {
@@ -259,7 +259,7 @@ h3 {
   color: #fff;
   border-radius: 3px;
   padding: 8px 12px;
-  display: inline-block;
+  display: block;
   float: right;
   border: 0;
   cursor: pointer;
@@ -276,6 +276,14 @@ h3 {
   -moz-appearance: none;
   appearance: none;
   cursor: pointer;
+}
+.mdc-text-field {
+  display: block !important;
+  margin-bottom: 18px;
+}
+.mdc-floating-label {
+  top: 8px !important;
+  font-size: 0.8rem !important;
 }
 @media (min-width: 960px) {
   .square {
