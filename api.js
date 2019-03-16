@@ -9,7 +9,6 @@ let aj = axios.create({
 
 let collections = axios.create({
     baseURL: 'https://cors-anywhere.herokuapp.com/https://collections.mplus.org.hk/en/objects',
-    timeout: 5000,
     responseType: 'document'
 })
 
@@ -37,29 +36,21 @@ function getRandomImages(count=25) {
             }
         }`
     }
-
+  
     return aj.post('/', payload).then(result => {
         if (result.status === 200) {
             let images = result.data.data.objects
-
+  
             return images.map(imgData => imgData.id)
         }
     })
-}
-
-// getRandomImages().then(res => {
-//     console.log(res);
-// })
-
-function getImageUrl(id) {
+  }
+  
+  function getImageUrl(id) {
     return collections.get(`/${id}`).then(result => {
         if (result.status === 200) {
             let document = result.data
             return document.head.querySelector('meta[property="og:image"]').content
         }
     })
-}
-
-getImageUrl(870).then(url => {
-    console.log(url)
-})
+  }

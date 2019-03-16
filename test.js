@@ -51,7 +51,7 @@ function getNewGameColours() {
   return newColours;
 }
 
-function generateBoard() {
+function generateBoard(imageIds) {
   console.log('generating board');
   let gameBoard = document.getElementById('game-board');
   let newColours = getNewGameColours();
@@ -74,7 +74,8 @@ function generateBoard() {
       );
 
       let colour = newColours.pop();
-      let card = createCard(colour);
+      let id = imageIds.pop();
+      let card = createCard(id, colour);
       gridCell.appendChild(card);
       gridInner.appendChild(gridCell);
     }
@@ -97,17 +98,24 @@ function createOffset() {
   return offset;
 }
 
-function createCard(colour) {
+function createCard(id, colour) {
   let card = document.createElement('div');
   card.setAttribute('class', 'mdc-card active ' + colour.class);
 
   let cardAction = document.createElement('mdc-card');
   cardAction.setAttribute('class', 'mdc-card__primary-action');
   cardAction.setAttribute('tabindex', '0');
-  cardAction.innerHTML = 'Card';
+
+  let img = new Image();
+  img.setAttribute('class', 'img-card');
+  getImageUrl(id).then(url => {
+    console.log(url);
+    img.src = url;
+  });
+  cardAction.appendChild(img);
 
   card.appendChild(cardAction);
   return card;
 }
 
-window.onload = generateBoard();
+window.onload = getRandomImages().then(imageIds => generateBoard(imageIds));
