@@ -12,7 +12,7 @@ h3 {
 }
 #game-board {
   width: 100%;
-  height: calc((100% / 6) * 5);
+  height: auto;
 }
 .square {
   color: #8e6b33;
@@ -269,4 +269,13 @@ h3 {
   #blue-counter {
     padding-left: 4px;
   }
+}
+
+.img-card {
+  width: 100%;
+  height: 100%;
+}
+
+.mdc-card__primary-action {
+  max-height: 300px;
 }
