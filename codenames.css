@@ -40,6 +40,9 @@ h3 {
 .square span {
   text-transform: uppercase;
 }
+.check img {
+  display: none;
+}
 .check .red,
 .check .blue,
 .check .assassin {
@@ -59,7 +62,7 @@ h3 {
 }
 .red.active,
 .blue.active,
-.bystander.active,
+.neutral.active,
 .assassin.active {
   background-size: cover;
   background-position: center;
@@ -82,11 +85,11 @@ h3 {
 .blue.active.d {
   background-image: url('images/blue-3.jpg');
 }
-.bystander.active.m {
-  background-image: url('images/bystander-1.png');
+.neutral.active.m {
+  background-image: url('images/neutral-1.png');
 }
-.bystander.active.f {
-  background-image: url('images/bystander-2.png');
+.neutral.active.f {
+  background-image: url('images/neutral-2.png');
 }
 .assassin.active {
   background-image: url('images/assassin.jpg');
@@ -278,4 +281,12 @@ h3 {
 
 .mdc-card__primary-action {
   max-height: 300px;
+}
+
+.mdc-card {
+  height: 200px;
+}
+
+.mdc-card.active img {
+  display: none;
 }
