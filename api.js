@@ -7,11 +7,6 @@ let aj = axios.create({
     }
 })
 
-let collections = axios.create({
-    baseURL: 'https://cors-anywhere.herokuapp.com/https://collections.mplus.org.hk/en/objects',
-    responseType: 'document'
-})
-
 function getRandomImages(category="Photography", count=25, seed=false) {
     let shuffleSeed = seed ? `shuffleSeed: ${seed},` : "";
     // shuffleSeed
@@ -50,10 +45,9 @@ function getRandomImages(category="Photography", count=25, seed=false) {
 }
   
 function getImageUrl(id) {
-    return collections.get(`/${id}`).then(result => {
+    return axios.get(`http://localhost:3000/img/${id}`).then(result => {
         if (result.status === 200) {
-            let document = result.data
-            return document.head.querySelector('meta[property="og:image"]').content
+            return result.data.data
         }
     })
 }
@@ -79,6 +73,7 @@ function getCategories() {
     })
 }
 
-getCategories().then(cats => {
-    console.log(cats)
-})
+// getCategories().then(cats => {
+//     console.log(cats)
+// })
+
