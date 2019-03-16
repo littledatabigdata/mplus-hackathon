@@ -28,3 +28,9 @@ area
 category
 We run an image crawler to fetch .jpg images from their beta collection website https://collections.mplus.org.hk/en/
 Each image is placed randomly on a 5x5 canvas (LxW) and has underlying object information (see example fetch below)
+
+
+To run
+npm install
+node main.js
+http-server

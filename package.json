@@ -1,0 +1,24 @@
+{
+  "name": "mplus-hackathon",
+  "version": "1.0.0",
+  "description": "hackathon",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littledatabigdata/mplus-hackathon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littledatabigdata/mplus-hackathon/issues"
+  },
+  "homepage": "https://github.com/littledatabigdata/mplus-hackathon#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  }
+}
