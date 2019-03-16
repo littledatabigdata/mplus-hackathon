@@ -1,8 +1,56 @@
 <html>
-    <head>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    </head>
-    <body>
-        <script src="./api.js"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="./codenames.css" type="text/css" />
+    <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <title>M+ Codenames</title>
+  </head>
+  <body>
+    <div id="game-board"></div>
+
+    <div id="bottom">
+      <div class="half">
+        <div id="red-remaining">
+          <span class="count-label">Red remaining:</span>
+          <span id="red-counter">0</span>
+        </div>
+        <div id="blue-remaining">
+          <span class="count-label">Blue remaining:</span>
+          <span id="blue-counter">0</span>
+        </div>
+      </div>
+      <div class="half">
+        <div id="newgame-button">New game</div>
+        <div id="check-button">Show colours</div>
+      </div>
+    </div>
+
+    <div class="modal-wrap">
+      <div class="modal-close"></div>
+      <div class="modal-new-game">
+        <h3>Are you sure you want to start a new game?</h3>
+        <div class="wordlist-wrap">
+          <span>Word list:</span>
+          <select class="select-words">
+            <option value="codenames">Codenames</option>
+            <option value="deepUndercover">Deep Undercover</option>
+            <option value="duet">Duet</option>
+          </select>
+        </div>
+        <button class="button-newgame">New Game</button>
+        <div class="modal-close">&times;</div>
+      </div>
+    </div>
+
+    <script src="./api.js"></script>
+    <script src="./test.js"></script>
+  </body>
 </html>
