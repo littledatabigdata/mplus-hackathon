@@ -1,10 +1,7 @@
-html,
 body {
-  height: calc(100% - 4px);
-}
-body {
-  margin: 2px 2px 0;
   font-family: arial;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 h3 {
   margin-top: 0;
@@ -12,8 +9,35 @@ h3 {
 }
 #game-board {
   width: 100%;
-  height: auto;
+  height: calc(100% - ((100% / 6) + 2px));
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-auto-flow: column;
 }
+.mdc-card {
+  background: #fdf5e6;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.mdc-card:not(:active) {
+  cursor: pointer;
+}
+.mdc-card:hover {
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+}
+/*
+.img-card {
+  width: 100%;
+  height: 100%;
+}
+*/
+.mdc-card.active img {
+  display: none;
+}
+
 .square {
   color: #8e6b33;
   font-weight: bold;
@@ -272,21 +296,4 @@ h3 {
   #blue-counter {
     padding-left: 4px;
   }
-}
-
-.img-card {
-  width: 100%;
-  height: 100%;
-}
-
-.mdc-card__primary-action {
-  max-height: 300px;
-}
-
-.mdc-card {
-  height: 200px;
-}
-
-.mdc-card.active img {
-  display: none;
 }

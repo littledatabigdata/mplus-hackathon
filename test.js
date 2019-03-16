@@ -86,41 +86,12 @@ function generateBoard(imageIds) {
   document.getElementById('red-counter').innerHTML = redRemaining;
   document.getElementById('blue-counter').innerHTML = blueRemaining;
 
-  for (var i = 0; i < 5; ++i) {
-    let grid = document.createElement('div');
-    grid.setAttribute('class', 'mdc-layout-grid');
-
-    let gridInner = document.createElement('div');
-    gridInner.setAttribute('class', 'mdc-layout-grid__inner');
-
-    gridInner.appendChild(createOffset());
-    for (var j = 0; j < 5; ++j) {
-      let gridCell = document.createElement('div');
-      gridCell.setAttribute(
-        'class',
-        'mdc-layout-grid__cell mdc-layout-grid__cell--span-2'
-      );
-
-      let colour = newColours.pop();
-      let id = imageIds.pop();
-      let card = createCard(id, colour);
-      gridCell.appendChild(card);
-      gridInner.appendChild(gridCell);
-    }
-    gridInner.appendChild(createOffset());
-
-    grid.appendChild(gridInner);
-    gameBoard.appendChild(grid);
+  for (var i = 0; i < 25; ++i) {
+    let colour = newColours.pop();
+    let id = imageIds.pop();
+    let card = createCard(id, colour);
+    gameBoard.appendChild(card);
   }
-}
-
-function createOffset() {
-  let offset = document.createElement('div');
-  offset.setAttribute(
-    'class',
-    'mdc-layout-grid__cell mdc-layout-grid__cell--span-1'
-  );
-  return offset;
 }
 
 function onCardClicked(colour) {
@@ -154,10 +125,13 @@ function onCardClicked(colour) {
 
 function createCard(id, colour) {
   let card = document.createElement('div');
-  card.setAttribute('class', 'mdc-card ' + colour.class);
+  card.setAttribute(
+    'class',
+    'mdc-card mdc-elevation-transition ' + colour.class
+  );
   card.addEventListener('click', onCardClicked(colour));
 
-  let cardAction = document.createElement('mdc-card');
+  let cardAction = document.createElement('div');
   cardAction.setAttribute('class', 'mdc-card__primary-action');
   cardAction.setAttribute('tabindex', '0');
 
@@ -167,8 +141,8 @@ function createCard(id, colour) {
     // console.log(url);
     img.src = url;
   });
-  cardAction.appendChild(img);
 
+  cardAction.appendChild(img);
   card.appendChild(cardAction);
   return card;
 }
