@@ -155,12 +155,27 @@ function createCard(id, colour) {
 }
 
 window.onload = (function() {
-  document.getElementById('newgame-button').addEventListener('click', newGame);
+  document
+    .getElementById('newgame-button')
+    .addEventListener('click', function() {
+      console.log('newgasa');
+      document.getElementById('modal-wrap').style.display = 'flex';
+    });
+  Array.from(document.getElementsByClassName('modal-close')).forEach(elem => {
+    elem.addEventListener('click', function() {
+      document.getElementById('modal-wrap').style.display = 'none';
+    });
+  });
   document.getElementById('check-button').addEventListener('click', function() {
     this.classList.toggle('button-on');
     this.innerHTML =
       this.innerHTML === 'Show Spymaster' ? 'Show Player' : 'Show Spymaster';
     document.getElementById('game-board').classList.toggle('check');
   });
-  newGame();
+  document
+    .getElementById('button-newgame')
+    .addEventListener('click', function() {
+      document.getElementById('modal-wrap').style.display = 'none';
+      newGame();
+    });
 })();

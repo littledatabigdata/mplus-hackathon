@@ -33,6 +33,9 @@ h3 {
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
 }
+.mdc-card:hover img {
+  transform: scale(1.01);
+}
 .mdc-card.active img {
   display: none;
 }
@@ -209,7 +212,7 @@ h3 {
 #check-button.button-on {
   background: #e57e00;
 }
-.modal-wrap {
+#modal-wrap {
   position: absolute;
   top: 0;
   right: 0;
@@ -218,9 +221,9 @@ h3 {
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
-  display: none;
+  display: flex;
 }
-.modal-wrap > .modal-close {
+#modal-wrap > .modal-close {
   position: absolute;
   top: 0;
   right: 0;
@@ -228,17 +231,17 @@ h3 {
   left: 0;
   cursor: pointer;
 }
-.modal-wrap .modal-new-game {
+#modal-wrap .modal-new-game {
   background: #fff;
   padding: 20px 40px;
   max-width: 70vw;
   max-height: 70vh;
   position: relative;
 }
-.modal-wrap .modal-new-game .wordlist-wrap {
+#modal-wrap .modal-new-game .wordlist-wrap {
   margin-bottom: 18px;
 }
-.modal-wrap .modal-new-game .modal-close {
+#modal-wrap .modal-new-game .modal-close {
   position: absolute;
   top: 0;
   right: 0;
@@ -247,10 +250,10 @@ h3 {
   font-size: 30px;
   transition: transform 1s;
 }
-.modal-wrap .modal-new-game .modal-close:hover {
+#modal-wrap .modal-new-game .modal-close:hover {
   transform: rotate(360deg);
 }
-.modal-wrap .modal-new-game .button-newgame {
+#modal-wrap .modal-new-game #button-newgame {
   font-size: 18px;
   background: #777;
   color: #fff;
@@ -261,7 +264,7 @@ h3 {
   border: 0;
   cursor: pointer;
 }
-.modal-wrap .modal-new-game .select-words {
+#modal-wrap .modal-new-game .select-words {
   border: 2px solid #ddd;
   border-radius: 3px;
   background-color: #fff;
