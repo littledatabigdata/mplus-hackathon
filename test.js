@@ -173,30 +173,12 @@ function createCard(id, colour) {
   return card;
 }
 
-function getGameInfo(words) {
-  for (var i = 0; i < 25; i++) {
-    $.each(words, function(n, v) {
-      if (v.id == urlCode.substring(i * 4, i * 4 + 2)) {
-        newWords.push(v);
-      }
-    });
-    $.each(allColours, function(n, v) {
-      if (v.id == urlCode.substring(i * 4 + 2, i * 4 + 4)) {
-        newColours.push(v);
-
-        if (v.id === '25') {
-          redRemaining += 1;
-        }
-        if (v.id === '26') {
-          blueRemaining += 1;
-        }
-      }
-    });
-  }
-}
-
 window.onload = (function() {
   document.getElementById('newgame-button').addEventListener('click', newGame);
-  document.getElementById('check-button').addEventListener('click', newGame);
+  document.getElementById('check-button').addEventListener('click', function() {
+    this.innerHTML =
+      this.innerHTML === 'Show Spymaster' ? 'Show Player' : 'Show Spymaster';
+    document.getElementById('game-board').classList.toggle('check');
+  });
   newGame();
 })();

@@ -40,6 +40,9 @@ h3 {
 .square span {
   text-transform: uppercase;
 }
+.check img {
+  display: none;
+}
 .check .red,
 .check .blue,
 .check .assassin {
