@@ -18,7 +18,7 @@ function getRandomImages(category="Photography", count=25, seed=false) {
     // filter by constituents
     const payload = {
         query: `{
-            objects (per_page: ${count}, shuffle: true, ${shuffleSeed} category: ${category}) {
+            objects (per_page: ${count}, shuffle: true, ${shuffleSeed} category: "Photography") {
               id
               objectNumber
               title
