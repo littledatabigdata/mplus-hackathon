@@ -1,13 +1,13 @@
-function generateBoard() {
+function generateBoard(imageIds) {
   console.log('generating board');
   let gameBoard = document.getElementById('game-board');
   for (var i = 0; i < 5; ++i) {
-    let grid = createRow();
+    let grid = createRow(imageIds);
     gameBoard.appendChild(grid);
   }
 }
 
-function createRow() {
+function createRow(imageIds) {
   let grid = document.createElement('div');
   grid.setAttribute('class', 'mdc-layout-grid');
 
@@ -21,8 +21,8 @@ function createRow() {
       'class',
       'mdc-layout-grid__cell mdc-layout-grid__cell--span-2'
     );
-
-    let card = createCard();
+      let id = imageIds.pop()
+    let card = createCard(id);
     gridCell.appendChild(card);
     gridInner.appendChild(gridCell);
   }
@@ -41,17 +41,30 @@ function createOffset() {
   return offset;
 }
 
-function createCard() {
+function createCard(id) {
   let card = document.createElement('div');
   card.setAttribute('class', 'mdc-card');
 
   let cardAction = document.createElement('mdc-card');
   cardAction.setAttribute('class', 'mdc-card__primary-action');
   cardAction.setAttribute('tabindex', '0');
-  cardAction.innerHTML = 'Card';
 
-  card.appendChild(cardAction);
+  let img = new Image();
+  img.setAttribute('class', 'img-card');
+  getImageUrl(id).then(url => {
+    console.log(url)
+    img.src = url
+  })
+    cardAction.appendChild(img)
+    
+    card.appendChild(cardAction);
   return card;
 }
 
-window.onload = generateBoard();
+window.onload = function() {
+  getRandomImages().then(ids => {
+    console.log('finished?')
+    console.log(ids)
+    generateBoard(ids);
+  })
+}
