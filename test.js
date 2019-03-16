@@ -62,12 +62,12 @@ function shuffle(array, seed) {
 }
 
 function getNewGameColours() {
-  let newColours = shuffle(colours.slice());
+  let newColours = colours.slice();
 
   // Randomize the double agent
   var coinFlip = Math.round(Math.random()); // random number 0 or 1
   newColours.push(extraColours[coinFlip]);
-  return newColours;
+  return shuffle(newColours);
 }
 
 function initializeRemaining(newColours) {
@@ -157,6 +157,7 @@ function createCard(id, colour) {
 window.onload = (function() {
   document.getElementById('newgame-button').addEventListener('click', newGame);
   document.getElementById('check-button').addEventListener('click', function() {
+    this.classList.toggle('button-on');
     this.innerHTML =
       this.innerHTML === 'Show Spymaster' ? 'Show Player' : 'Show Spymaster';
     document.getElementById('game-board').classList.toggle('check');
