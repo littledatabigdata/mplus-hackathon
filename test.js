@@ -40,7 +40,7 @@ function newGame() {
   const categoryList = document.getElementById('categories-list');
   const category = categoryList.options[categoryList.selectedIndex].value;
   const seedInput = document.getElementById('seed-input').value;
-  getRandomImages(category, 25, seedInput).then(imageIds =>
+  getRandomImages(category, 25, seedInput, true).then(imageIds =>
     generateBoard(imageIds)
   );
 }
@@ -149,8 +149,7 @@ function createCard(id, colour) {
   cardAction.setAttribute('tabindex', '0');
 
   let img = new Image();
-  img.setAttribute('class', 'img-card');
-  getImageUrl(id).then(url => {
+  getImageUrl(id, true).then(url => {
     // console.log(url);
     img.src = url;
   });
