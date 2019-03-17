@@ -40,9 +40,10 @@ function newGame() {
   const categoryList = document.getElementById('categories-list');
   const category = categoryList.options[categoryList.selectedIndex].value;
   const seedInput = document.getElementById('seed-input').value;
-  getRandomImages(category, 25, seedInput, true).then(imageIds =>
-    generateBoard(imageIds)
-  );
+  getRandomImages(category, 25, seedInput, true).then(imageIds => {
+    console.log(imageIds);
+    generateBoard(imageIds);
+  });
 }
 
 function shuffle(array, seed) {
@@ -91,7 +92,7 @@ function clearBoard() {
   while ((last = gameBoard.lastChild)) gameBoard.removeChild(last);
 }
 
-function generateBoard(imageIds) {
+function generateBoard(imageData) {
   console.log('generating board');
   let gameBoard = document.getElementById('game-board');
   let newColours = getNewGameColours();
@@ -101,15 +102,15 @@ function generateBoard(imageIds) {
 
   for (var i = 0; i < 25; ++i) {
     let colour = newColours.pop();
-    let id = imageIds.pop();
-    let card = createCard(id, colour);
+    let { id, alt } = imageData.pop();
+    let card = createCard(id, colour, alt);
     gameBoard.appendChild(card);
   }
 }
 
 function onCardClicked(colour) {
   return function() {
-    if (!showSpymaster && !this.classList.contains('active')) {
+    if (showSpymaster && !this.classList.contains('active')) {
       this.classList.add('active');
 
       if (colour.class[0] === 'r') {
@@ -136,7 +137,7 @@ function onCardClicked(colour) {
   };
 }
 
-function createCard(id, colour) {
+function createCard(id, colour, alt = '') {
   let card = document.createElement('div');
   card.setAttribute(
     'class',
@@ -148,8 +149,12 @@ function createCard(id, colour) {
   cardAction.setAttribute('class', 'mdc-card__primary-action');
   cardAction.setAttribute('tabindex', '0');
 
+  console.log('asdadadasds');
+  console.log(id);
   let img = new Image();
   getImageUrl(id, true).then(url => {
+    img.setAttribute('class', 'img-card');
+    img.alt = alt;
     // console.log(url);
     img.src = url;
   });

@@ -24,7 +24,7 @@ function getImageUrl(id) {
 
         if (url === '/emoji/frame-with-picture.png') {
           console.log('no image found, retrying...');
-          // return getImageUrl(Math.floor(Math.random() * MAX_COUNT));
+          return getImageUrl(Math.floor(Math.random() * MAX_COUNT));
         }
 
         return url;
