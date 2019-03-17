@@ -20,6 +20,14 @@ We, HK Nova, aim to combine the powerful images and objects from MPlus's reposit
 
 At the same time, we believe this exercise will help the users/players retain information for longer and have a meaningful interaction with the images when compared to visiting the museum only. 
 
+You can view the rules of the game Codenames here: https://www.youtube.com/watch?v=zQVHkl8oQEU
+
+- [x] Board game
+- [x] Guess code names (words/images) in a set related to hint word
+- [x] Players split into two teams: red and blue
+- [x] One player of each team is selected as the team's spymaster 
+- [x] The others are field operatives
+
 ### Prerequisites
 
 What things you need to install the software and how to install them
@@ -117,6 +125,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 Created for the purposes of MPlus Hackathon. 
 
 ## Acknowledgments
-
-https://github.com/jbowens/codenames
-https://github.com/JamieSteveLee/codenames
+:+1: https://collections.mplus.org.hk/
+:+1: https://dashboard.mplus.org.hk/en/developer/graphql
+:+1: https://github.com/jbowens/codenames
+:+1: https://github.com/JamieSteveLee/codenames
