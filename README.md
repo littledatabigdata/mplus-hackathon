@@ -78,6 +78,14 @@ https://collections.mplus.org.hk/en/objects/9994
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
+## Future Work
+* Convert this into an iOS or Android app so it can be played between multiple users at the MPlus Museum West Kowloon Cultural District using tablets.
+* Expand capabilities of the app to include connecting to multiple nodes (using peer discovery).
+* Allow iOS / Android apps with users to interact with iPads/Android tablets at the museums.
+* Ability to add Chinese (both Mandarin and Cantonese) as languages.
+* Ability to pivot this game into 'Jeopardy' game which has similar rules of engagement and gameplay.
+* Perform Machine-Learning tasks to generate missing titles from the description, classification and other fields provided as part of thhe object data (JSON/CSV).
+
 
 ## Authors
 
