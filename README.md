@@ -98,6 +98,13 @@ https://collections.mplus.org.hk/en/objects/9994
 
 ![alt text](https://res.cloudinary.com/mplustms//image/upload/w_600/v1550183929/j5kxiaglrpdscnirueg7.jpg)
 
+## Screenshots from the game
+
+![alt text](https://ibb.co/kxzxX3m)
+![alt text](https://ibb.co/Ns35WmB)
+![alt text](https://ibb.co/93ybtfY)
+
+
 ## Future Work
 * Convert this into an **iOS** or **Android** app so it can be played between multiple users at the MPlus Museum West Kowloon Cultural District using tablets.
 * Expand capabilities of the app to include connecting to **multiple nodes/players** (using peer discovery).
