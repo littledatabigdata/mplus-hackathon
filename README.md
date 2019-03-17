@@ -7,10 +7,12 @@ MPlus Hackathon - https://www.westkowloon.hk/en/Hackathon
 M+ presents its second hackathon, on 16–17 March. During this two-day event, we invite designers, artists, technologists, and cultural enthusiasts to use M+ Collections open data as raw material for creative and artistic projects. Participants are encouraged to examine, interpret, and activate the M+ Collections through design, code, or other mediums.
 
 # Hackathon related files
+```
 Curated Objects: https://github.com/mplusmuseum/collection-data
 MPlus Beta website: https://collections.mplus.org.hk/
 MPlus API Token: f6081d411087c7d6e14071193a20052e
 HK Nova Private Repository: https://github.com/littledatabigdata/mplus-hackathon
+```
 
 ## Getting Started
 
@@ -32,10 +34,15 @@ A step by step series of examples that tell you how to get a development env run
 
 
 ## To Run
-
+```
 npm install (node package manager)
+```
+```
 node main.js
+```
+```
 http-server (to run this is a local application)
+```
 
 ## Built With
 
@@ -60,6 +67,7 @@ Each image is placed randomly on a 5x5 canvas (LxW) and has underlying object in
 
 Random Object returns an image objectID
 
+```
 objectNumber: 9994
 Title: Cop and Baby / 警察和嬰兒
 displayDate: 2017
@@ -67,6 +75,8 @@ Medium: digital chromogenic print on gloss paper / 數碼彩色照片、光粉�
 classification
 area: Visual Art / 視覺藝術
 category: Photography / 攝影
+```
+Example of object 9994 (links)
 
 https://github.com/mplusmuseum/collection-data/blob/master/objects_JSON/9000/09994.json
 https://collections.mplus.org.hk/en/objects/9994
