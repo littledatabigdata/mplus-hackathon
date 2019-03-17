@@ -71,7 +71,7 @@ category: Photography / 攝影
 https://github.com/mplusmuseum/collection-data/blob/master/objects_JSON/9000/09994.json
 https://collections.mplus.org.hk/en/objects/9994
 
-
+![alt text](https://res.cloudinary.com/mplustms//image/upload/w_600/v1550183929/j5kxiaglrpdscnirueg7.jpg)
 
 
 ## Contributing
@@ -81,8 +81,8 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-*Michael Guo*
-*Terence Yeung*
+*Michael Guo*, 
+*Terence Yeung*, &
 *Abhishek P*
 
 ## License
