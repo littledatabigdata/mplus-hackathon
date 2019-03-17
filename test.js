@@ -109,7 +109,7 @@ function generateBoard(imageData) {
 
 function onCardClicked(colour) {
   return function() {
-    if (!showSpymaster && !this.classList.contains('active')) {
+    if (showSpymaster && !this.classList.contains('active')) {
       this.classList.add('active');
 
       if (colour.class[0] === 'r') {
