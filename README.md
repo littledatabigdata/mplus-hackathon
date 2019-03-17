@@ -125,7 +125,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 Created for the purposes of MPlus Hackathon. 
 
 ## Acknowledgments
-:+1: https://collections.mplus.org.hk/
-:+1: https://dashboard.mplus.org.hk/en/developer/graphql
-:+1: https://github.com/jbowens/codenames
-:+1: https://github.com/JamieSteveLee/codenames
+:+1: https://collections.mplus.org.hk/ <br/>
+:+1: https://dashboard.mplus.org.hk/en/developer/graphql <br/>
+:+1: https://github.com/jbowens/codenames <br/>
+:+1: https://github.com/JamieSteveLee/codenames <br/>
