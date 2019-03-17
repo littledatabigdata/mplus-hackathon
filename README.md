@@ -1,6 +1,6 @@
 # mplus-hackathon
 
-# Project Title
+# Codenames by HK NOVA
 
 MPlus Hackathon - https://www.westkowloon.hk/en/Hackathon
 
@@ -41,6 +41,12 @@ npm install (node package manager)
 node main.js
 ```
 ```
+npm http-server -g
+```
+```
+cd to directory where clone is present
+```
+```
 http-server (to run this is a local application)
 ```
 
@@ -50,8 +56,10 @@ http-server (to run this is a local application)
 
 # How does this work ?
 Premise
-Each Object ID on LINK directly relates to Object ID mentioned here LINK
+Each Object ID on (https://github.com/mplusmuseum/collection-data/blob/master/objects_JSON/0/00001.json) directly relates to Object ID mentioned here (https://collections.mplus.org.hk/en/objects/1)
 RandomObjects is used to fetch 5x5 (25) objects (json). Below fields can be fetched
+
+```
 *objectNumber*
 -- Title
 -- displayDate
@@ -59,9 +67,9 @@ RandomObjects is used to fetch 5x5 (25) objects (json). Below fields can be fetc
 -- classification
 -- area
 -- category
+```
 
-We run an image crawler to fetch .jpg images from their beta collection website https://collections.mplus.org.hk/en/
-Each image is placed randomly on a 5x5 canvas (LxW) and has underlying object information (see example fetch below)
+We run an image crawler to fetch .jpg / .png images from MPlus's beta collection website https://collections.mplus.org.hk/en/. Each image is placed randomly on a 5x5 canvas (LxW) and has underlying object information (see example fetch below). 
 
 # Example of a fetch
 
@@ -95,6 +103,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 * Ability to add Chinese (both Mandarin and Cantonese) as languages.
 * Ability to pivot this game into 'Jeopardy' game which has similar rules of engagement and gameplay.
 * Perform Machine-Learning tasks to generate missing titles from the description, classification and other fields provided as part of thhe object data (JSON/CSV).
+* Provide specific themes (like Black and White, Visual Art, Paintings, etc.) to users so they can customize their games according to their input.
 
 
 ## Authors
@@ -111,8 +120,3 @@ Created for the purposes of MPlus Hackathon.
 
 https://github.com/jbowens/codenames
 https://github.com/JamieSteveLee/codenames
-
-
-
-
-
