@@ -40,8 +40,8 @@ function newGame() {
   const categoryList = document.getElementById('categories-list');
   const category = categoryList.options[categoryList.selectedIndex].value;
   const seedInput = document.getElementById('seed-input').value;
-  getRandomImages(category, 25, seedInput).then(imageIds =>
-    generateBoard(imageIds)
+  getRandomImages(category, 25, seedInput).then(imageData =>
+    generateBoard(imageData)
   );
 }
 
@@ -91,7 +91,7 @@ function clearBoard() {
   while ((last = gameBoard.lastChild)) gameBoard.removeChild(last);
 }
 
-function generateBoard(imageIds) {
+function generateBoard(imageData) {
   console.log('generating board');
   let gameBoard = document.getElementById('game-board');
   let newColours = getNewGameColours();
@@ -101,8 +101,8 @@ function generateBoard(imageIds) {
 
   for (var i = 0; i < 25; ++i) {
     let colour = newColours.pop();
-    let id = imageIds.pop();
-    let card = createCard(id, colour);
+    let {id, alt} = imageData.pop();
+    let card = createCard(id, colour, alt);
     gameBoard.appendChild(card);
   }
 }
@@ -136,7 +136,7 @@ function onCardClicked(colour) {
   };
 }
 
-function createCard(id, colour) {
+function createCard(id, colour, alt="") {
   let card = document.createElement('div');
   card.setAttribute(
     'class',
@@ -150,6 +150,7 @@ function createCard(id, colour) {
 
   let img = new Image();
   img.setAttribute('class', 'img-card');
+  img.alt = alt
   getImageUrl(id).then(url => {
     // console.log(url);
     img.src = url;

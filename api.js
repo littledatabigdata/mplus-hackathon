@@ -40,7 +40,12 @@ function getRandomImages(category = 'Photography', count = 25, seed = false) {
     if (result.status === 200) {
       let images = result.data.data.objects;
 
-      return images.map(imgData => imgData.id);
+      return images.map(imgData => {
+            return {
+                id: imgData.id,
+                alt: imgData.title
+            }
+      });
     }
   });
 }

@@ -40,6 +40,53 @@ app.get('/img/:id', function (req, res, next) {
         res.json({data: ''})
     })
 })
+
+function shuffle(array, seed) {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+    seed = seed || 1;
+    let random = function() {
+      var x = Math.sin(seed++) * 10000;
+      return x - Math.floor(x);
+    };
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(random() * currentIndex);
+      currentIndex -= 1;
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+  
+function getNewGameColours() {
+    let newColours = colours.slice();
+
+    // Randomize the double agent
+    var coinFlip = Math.round(Math.random()); // random number 0 or 1
+    newColours.push(extraColours[coinFlip]);
+    return shuffle(newColours);
+}
+
+function generateMap() {
+    let neutral = Array.from({length: 7}, _ => "neutral")
+    let red = Array.from({length: 9}, _ => "red")
+    let blue = Array.from({length: 8}, _ => "blue")
+    let sin = ["assasin"]
+
+    let hk = shuffle(neutral.concat(red, blue, sin))
+    return hk.map(x => {
+        return x + (Math.round(Math.random()) === 1 ? " f" : " m")
+    })
+}
+
+app.get('/game', function (req, res, next) {
+    res.send(generateMap())
+})
  
 app.listen(3000, function () {
   console.log('CORS-enabled web server listening on port 3000')
