@@ -4,7 +4,7 @@
 
 MPlus Hackathon - https://www.westkowloon.hk/en/Hackathon
 
-M+ presents its second hackathon, on 16–17 March. During this two-day event, we invite designers, artists, technologists, and cultural enthusiasts to use M+ Collections open data as raw material for creative and artistic projects. Participants are encouraged to examine, interpret, and activate the M+ Collections through design, code, or other mediums.
+**M+** presents its second hackathon, on **16–17 March**. During this two-day event, we invite designers, artists, technologists, and cultural enthusiasts to use M+ Collections open data as raw material for creative and artistic projects. Participants are encouraged to examine, interpret, and activate the M+ Collections through design, code, or other mediums.
 
 # Hackathon related files
 ```
@@ -16,7 +16,7 @@ HK Nova Private Repository: https://github.com/littledatabigdata/mplus-hackathon
 
 ## Getting Started
 
-We, HK Nova, aim to combine the powerful images and objects from MPlus's repository with an interactive all-ages board game called 'Codenames' (https://en.wikipedia.org/wiki/Codenames_(board_game). Instead of using 'words' to provide clues to our spies, we will be using images from MPlus Beta Collection website to make the entire interaction more interesting. 
+We, **HK Nova**, aim to combine the powerful images and objects from MPlus's repository with an interactive all-ages board game called **'Codenames'** (https://en.wikipedia.org/wiki/Codenames_(board_game). Instead of using 'words' to provide clues to our spies, we will be using images from MPlus Beta Collection website to make the entire interaction more interesting. 
 
 At the same time, we believe this exercise will help the users/players retain information for longer and have a meaningful interaction with the images when compared to visiting the museum only. 
 
@@ -63,7 +63,6 @@ http-server (to run this is a local application)
 * [Material by Google](https://material.io/develop/web/components) - To design the UI interface
 
 # How does this work ?
-Premise
 Each Object ID on (https://github.com/mplusmuseum/collection-data/blob/master/objects_JSON/0/00001.json) directly relates to Object ID mentioned here (https://collections.mplus.org.hk/en/objects/1)
 RandomObjects is used to fetch 5x5 (25) objects (json). Below fields can be fetched
 
@@ -99,25 +98,20 @@ https://collections.mplus.org.hk/en/objects/9994
 
 ![alt text](https://res.cloudinary.com/mplustms//image/upload/w_600/v1550183929/j5kxiaglrpdscnirueg7.jpg)
 
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Future Work
-* Convert this into an iOS or Android app so it can be played between multiple users at the MPlus Museum West Kowloon Cultural District using tablets.
-* Expand capabilities of the app to include connecting to multiple nodes (using peer discovery).
+* Convert this into an **iOS** or **Android** app so it can be played between multiple users at the MPlus Museum West Kowloon Cultural District using tablets.
+* Expand capabilities of the app to include connecting to **multiple nodes/players** (using peer discovery).
 * Allow iOS / Android apps with users to interact with iPads/Android tablets at the museums.
-* Ability to add Chinese (both Mandarin and Cantonese) as languages.
-* Ability to pivot this game into 'Jeopardy' game which has similar rules of engagement and gameplay.
-* Perform Machine-Learning tasks to generate missing titles from the description, classification and other fields provided as part of thhe object data (JSON/CSV).
-* Provide specific themes (like Black and White, Visual Art, Paintings, etc.) to users so they can customize their games according to their input.
+* Ability to add **Chinese characters** (both Mandarin and Cantonese) as languages.
+* Ability to pivot this game into **'Jeopardy'** game which has similar rules of engagement and gameplay.
+* Perform **Machine-Learning** tasks to generate missing titles from the description, classification and other fields provided as part of thhe object data (JSON/CSV).
+* Provide **specific themes** (like Black and White, Visual Art, Paintings, etc.) to users so they can customize their games according to their input.
 
 
 ## Authors
 
-*Michael Guo*, 
-*Terence Yeung*, &
+*Michael Guo*, <br/>
+*Terence Yeung*, & <br/>
 *Abhishek P*
 
 ## License
