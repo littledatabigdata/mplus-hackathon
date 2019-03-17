@@ -30,7 +30,7 @@ const extraColours = [{ class: 'red d' }, { class: 'blue d' }];
 let redRemaining = 0;
 let blueRemaining = 0;
 let gameEnded = false;
-let showSpymaster = false;
+let showSpymaster = true;
 
 function newGame() {
   redRemaining = 0;
