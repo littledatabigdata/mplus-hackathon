@@ -100,9 +100,9 @@ https://collections.mplus.org.hk/en/objects/9994
 
 ## Screenshots from the game
 
-![alt text](https://ibb.co/kxzxX3m)
-![alt text](https://ibb.co/Ns35WmB)
-![alt text](https://ibb.co/93ybtfY)
+![alt text](https://i.ibb.co/BtvtB4n/Start-Game.png)
+![alt text](https://i.ibb.co/1Ln1RdW/Select-Img-Category.png)
+![alt text](https://i.ibb.co/qFmN541/Play.png)
 
 
 ## Future Work
