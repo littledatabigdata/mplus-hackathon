@@ -94,7 +94,6 @@ function getRandomImages(
 
 function getImageUrl(id, mock) {
   if (mock === true) {
-    console.log(id);
     return Promise.resolve(`./images/demo/${id}.jpg`);
   }
 

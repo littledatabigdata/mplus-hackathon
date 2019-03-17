@@ -41,7 +41,6 @@ function newGame() {
   const category = categoryList.options[categoryList.selectedIndex].value;
   const seedInput = document.getElementById('seed-input').value;
   getRandomImages(category, 25, seedInput, true).then(imageIds => {
-    console.log(imageIds);
     generateBoard(imageIds);
   });
 }
@@ -150,8 +149,6 @@ function createCard(id, colour, alt = '') {
   cardAction.setAttribute('class', 'mdc-card__primary-action');
   cardAction.setAttribute('tabindex', '0');
 
-  console.log('asdadadasds');
-  console.log(id);
   let img = new Image();
   getImageUrl(id, true).then(url => {
     img.setAttribute('class', 'img-card');
