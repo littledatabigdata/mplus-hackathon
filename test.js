@@ -50,7 +50,7 @@ function shuffle(array, seed) {
   let currentIndex = array.length,
     temporaryValue,
     randomIndex;
-  seed = seed || 1;
+  seed = seed || 5;
   let random = function() {
     var x = Math.sin(seed++) * 10000;
     return x - Math.floor(x);
@@ -72,7 +72,8 @@ function getNewGameColours() {
   let newColours = colours.slice();
 
   // Randomize the double agent
-  var coinFlip = Math.round(Math.random()); // random number 0 or 1
+  //var coinFlip = Math.round(Math.random()); // random number 0 or 1
+  var coinFlip = 0;
   newColours.push(extraColours[coinFlip]);
   return shuffle(newColours);
 }
