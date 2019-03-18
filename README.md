@@ -118,7 +118,7 @@ https://collections.mplus.org.hk/en/objects/9994
 ## Authors
 
 *Michael Guo*, <br/>
-*Terence Yeung*, & <br/>
+*Terence Leung*, & <br/>
 *Abhishek P*
 
 ## License
