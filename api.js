@@ -7,11 +7,7 @@ let aj = axios.create({
   }
 });
 
-function getRandomImages(
-  category = 'Photography',
-  count = 25,
-  seed = false
-) {
+function getRandomImages(category = 'Photography', count = 25, seed = false) {
   let categoryOpt = category !== 'all' ? `category: "${category}"` : '';
   let shuffleSeed = seed ? `shuffleSeed: "${seed}",` : '';
   // shuffleSeed
@@ -54,11 +50,7 @@ function getRandomImages(
   });
 }
 
-function getImageUrl(id, mock) {
-  if (mock === true) {
-    return Promise.resolve(`./images/demo/${id}.jpg`);
-  }
-
+function getImageUrl(id) {
   return axios.get(`http://localhost:3000/img/${id}`).then(result => {
     if (result.status === 200) {
       return result.data.data;

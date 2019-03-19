@@ -39,33 +39,6 @@ h3 {
 .mdc-card.active img {
   display: none;
 }
-
-.square {
-  color: #8e6b33;
-  font-weight: bold;
-  float: left;
-  width: calc((100% / 5) - 8px);
-  height: calc((100% / 5) - 8px);
-  margin: 2px;
-  background: #fdf5e6;
-  text-align: center;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #8e6b33;
-  border-radius: 5px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  font-size: 2.5vw;
-}
-.square span {
-  text-transform: uppercase;
-}
 .check img {
   display: none;
 }
@@ -276,11 +249,6 @@ h3 {
 .mdc-floating-label {
   top: 8px !important;
   font-size: 0.8rem !important;
-}
-@media (min-width: 960px) {
-  .square {
-    font-size: 23px;
-  }
 }
 @media (max-width: 740px) {
   .count-label {

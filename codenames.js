@@ -1,140 +1,65 @@
-var wordList = codenames;
-var urlCode = window.location.search.substring(1);
-
-// List of colours
-var colours = [
-  { id: '02', colour: 'red m' },
-  { id: '06', colour: 'red m' },
-  { id: '07', colour: 'red m' },
-  { id: '09', colour: 'red m' },
-  { id: '01', colour: 'red f' },
-  { id: '11', colour: 'red f' },
-  { id: '10', colour: 'red f' },
-  { id: '04', colour: 'red f' },
-  { id: '12', colour: 'blue m' },
-  { id: '16', colour: 'blue m' },
-  { id: '08', colour: 'blue m' },
-  { id: '20', colour: 'blue m' },
-  { id: '15', colour: 'blue f' },
-  { id: '22', colour: 'blue f' },
-  { id: '03', colour: 'blue f' },
-  { id: '24', colour: 'blue f' },
-  { id: '21', colour: 'neutral m' },
-  { id: '23', colour: 'neutral m' },
-  { id: '14', colour: 'neutral m' },
-  { id: '13', colour: 'neutral m' },
-  { id: '18', colour: 'neutral f' },
-  { id: '17', colour: 'neutral f' },
-  { id: '19', colour: 'neutral f' },
-  { id: '05', colour: 'assassin' }
+const colours = [
+  { class: 'red m' },
+  { class: 'red m' },
+  { class: 'red m' },
+  { class: 'red m' },
+  { class: 'red f' },
+  { class: 'red f' },
+  { class: 'red f' },
+  { class: 'red f' },
+  { class: 'blue m' },
+  { class: 'blue m' },
+  { class: 'blue m' },
+  { class: 'blue m' },
+  { class: 'blue f' },
+  { class: 'blue f' },
+  { class: 'blue f' },
+  { class: 'blue f' },
+  { class: 'neutral m' },
+  { class: 'neutral m' },
+  { class: 'neutral m' },
+  { class: 'neutral m' },
+  { class: 'neutral f' },
+  { class: 'neutral f' },
+  { class: 'neutral f' },
+  { class: 'assassin' }
 ];
-var extraColours = [
-  { id: '25', colour: 'red d' },
-  { id: '26', colour: 'blue d' }
-];
-var allColours = [];
-for (var i = 0; i < colours.length; i++) {
-  allColours.push(colours[i]);
-}
-for (var i = 0; i < extraColours.length; i++) {
-  allColours.push(extraColours[i]);
-}
 
-// Starting values
-var redRemaining = 0;
-var blueRemaining = 0;
-var gameEnded = false;
-var firstPageLoad = true;
-var newColours = colours.slice();
-var newWords = codenames.slice();
+const extraColours = [{ class: 'red d' }, { class: 'blue d' }];
 
-$(function() {
-  // Click button to check colours
-  $('#check-button').click(function() {
-    $('#game-board').toggleClass('check');
-    $('#check-button').toggleClass('button-on');
+let redRemaining = 0;
+let blueRemaining = 0;
+let gameEnded = false;
+let showSpymaster = true;
 
-    if ($(this).hasClass('button-on')) {
-      $('#check-button').text('Hide colours');
-    } else {
-      $('#check-button').text('Show colours');
-    }
+function newGame() {
+  redRemaining = 0;
+  blueRemaining = 0;
+  gameEnded = false;
+  clearBoard();
+  const categoryList = document.getElementById('categories-list');
+  const category = categoryList.options[categoryList.selectedIndex].value;
+  const seedInput = document.getElementById('seed-input').value;
+  getRandomImages(category, 25, seedInput).then(imageIds => {
+    generateBoard(imageIds);
   });
-
-  // When squares are clicked, add active class, and remove text
-  $('body').on('click', '.square', function() {
-    $(this).addClass('active');
-  });
-
-  // When red or blue clicked, remining figure reduced by 1
-  $('body').on('click', '.red:not(.active)', function() {
-    redRemaining -= 1;
-    $('#red-counter').html(redRemaining);
-    if (redRemaining === 0 && gameEnded === false) {
-      alert('Red Wins!');
-      gameEnded = true;
-    }
-  });
-  $('body').on('click', '.blue:not(.active)', function() {
-    blueRemaining -= 1;
-    $('#blue-counter').html(blueRemaining);
-    if (blueRemaining === 0 && gameEnded === false) {
-      alert('Blue Wins!');
-      gameEnded = true;
-    }
-  });
-
-  // Assassin
-  $('body').on('click', '.assassin', function() {
-    if (gameEnded === false) {
-      alert('You were killed by the assassin');
-      gameEnded = true;
-    }
-  });
-
-  // Initial game
-  newGame();
-
-  // Click button to bring up new game modal
-  $('#newgame-button').click(function() {
-    $('.modal-wrap')
-      .css('display', 'flex')
-      .hide()
-      .fadeIn();
-  });
-
-  // Select words list
-  $('.select-words').on('change', function() {
-    var newWordList = window[$(this).val()];
-    wordList = newWordList;
-  });
-
-  // Click button to start new game
-  $('.button-newgame').click(function() {
-    newGame();
-  });
-});
-
-// Add extra colour
-function extraColour() {
-  var coinFlip = Math.floor(Math.random() * 2) + 1;
-  if (coinFlip === 1) {
-    redRemaining += 1;
-    newColours.push(extraColours[0]);
-  } else {
-    blueRemaining += 1;
-    newColours.push(extraColours[1]);
-  }
 }
 
-// Shuffle function
-function shuffle(array) {
-  var currentIndex = array.length,
+function shuffle(array, seed) {
+  let currentIndex = array.length,
     temporaryValue,
     randomIndex;
+  seed = seed || 5;
+  let random = function() {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+  };
+  // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
+    // Pick a remaining element...
+    randomIndex = Math.floor(random() * currentIndex);
     currentIndex -= 1;
+    // And swap it with the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -142,119 +67,122 @@ function shuffle(array) {
   return array;
 }
 
-// Function to generate codenames
-function getNewBoard(words, col) {
-  var newBoard = '';
-  urlCode = '';
+function getNewGameColours() {
+  let newColours = colours.slice();
 
-  for (var i = 0; i < 25; i++) {
-    newBoard +=
-      '<div class="square ' +
-      col[i].colour +
-      '"><span>' +
-      words[i].codename +
-      '</span></div>';
-    urlCode += words[i].id + col[i].id;
-  }
-
-  switch (wordList) {
-    case deepUndercover:
-      urlCode += 'deep';
-      $('.select-words').val('deepUndercover');
-      break;
-    case duet:
-      urlCode += 'duet';
-      $('.select-words').val('duet');
-      break;
-    default:
-      urlCode += 'code';
-  }
-
-  return newBoard;
+  // Randomize the double agent
+  //var coinFlip = Math.round(Math.random()); // random number 0 or 1
+  var coinFlip = 0;
+  newColours.push(extraColours[coinFlip]);
+  return shuffle(newColours);
 }
 
-function getGameInfo(words) {
-  for (var i = 0; i < 25; i++) {
-    $.each(words, function(n, v) {
-      if (v.id == urlCode.substring(i * 4, i * 4 + 2)) {
-        newWords.push(v);
-      }
-    });
-    $.each(allColours, function(n, v) {
-      if (v.id == urlCode.substring(i * 4 + 2, i * 4 + 4)) {
-        newColours.push(v);
-
-        if (v.id === '25') {
-          redRemaining += 1;
-        }
-        if (v.id === '26') {
-          blueRemaining += 1;
-        }
-      }
-    });
-  }
-}
-
-// Start new game
-function newGame() {
-  // Reset values
-  redRemaining = 8;
-  blueRemaining = 8;
-  gameEnded = false;
-
-  // Game setup
-  if (urlCode && firstPageLoad) {
-    newColours = [];
-    newWords = [];
-
-    urlWordString = urlCode.substring(100, 104);
-
-    switch (urlWordString) {
-      case 'deep':
-        wordList = deepUndercover;
-        break;
-      case 'duet':
-        wordList = duet;
-        break;
-      default:
-        wordList = codenames;
+function initializeRemaining(newColours) {
+  newColours.forEach(colour => {
+    if (colour.class[0] === 'r') {
+      redRemaining += 1;
+    } else if (colour.class[0] === 'b') {
+      blueRemaining += 1;
     }
-
-    getGameInfo(wordList);
-  } else {
-    newColours = colours.slice();
-    newWords = wordList.slice();
-
-    extraColour();
-    shuffle(newWords);
-    shuffle(newColours);
-  }
-
-  // New board
-  var newBoard = getNewBoard(newWords, newColours);
-  $('#game-board').html(newBoard);
-
-  // Reset remaining values on page
-  $('#red-counter').html(redRemaining);
-  $('#blue-counter').html(blueRemaining);
-
-  // Hide colours if in check mode
-  $('#game-board').removeClass('check');
-  $('#check-button').removeClass('button-on');
-  $('#check-button').text('Show colours');
-
-  $('.modal-wrap').hide();
-
-  //Set the URL
-  firstPageLoad = false;
-  $(function() {
-    var state = { urlCode: urlCode },
-      title = 'Codenames',
-      path = '?' + urlCode;
-    history.pushState(state, title, path);
-  });
-
-  $('.modal-close').click(function() {
-    $('.modal-wrap').hide();
   });
 }
+
+function clearBoard() {
+  let gameBoard = document.getElementById('game-board');
+  while ((last = gameBoard.lastChild)) gameBoard.removeChild(last);
+}
+
+function generateBoard(imageData) {
+  console.log('generating board');
+  let gameBoard = document.getElementById('game-board');
+  let newColours = getNewGameColours();
+  initializeRemaining(newColours);
+  document.getElementById('red-counter').innerHTML = redRemaining;
+  document.getElementById('blue-counter').innerHTML = blueRemaining;
+
+  for (var i = 0; i < 25; ++i) {
+    let colour = newColours.pop();
+    let { id, alt } = imageData.pop();
+    let card = createCard(id, colour, alt);
+    gameBoard.appendChild(card);
+  }
+}
+
+function onCardClicked(colour) {
+  return function() {
+    if (showSpymaster && !this.classList.contains('active')) {
+      this.classList.add('active');
+
+      if (colour.class[0] === 'r') {
+        redRemaining -= 1;
+        document.getElementById('red-counter').innerHTML = redRemaining;
+        if (redRemaining === 0 && gameEnded === false) {
+          alert('Red Wins!');
+          gameEnded = true;
+        }
+      } else if (colour.class[0] === 'b') {
+        blueRemaining -= 1;
+        document.getElementById('blue-counter').innerHTML = blueRemaining;
+        if (blueRemaining === 0 && gameEnded === false) {
+          alert('Blue Wins!');
+          gameEnded = true;
+        }
+      } else if (colour.class[0] === 'a') {
+        if (gameEnded === false) {
+          alert('You were killed by the assassin.');
+          gameEnded = true;
+        }
+      }
+    }
+  };
+}
+
+function createCard(id, colour, alt = '') {
+  let card = document.createElement('div');
+  card.setAttribute(
+    'class',
+    'mdc-card mdc-elevation-transition ' + colour.class
+  );
+  card.addEventListener('click', onCardClicked(colour));
+
+  let cardAction = document.createElement('div');
+  cardAction.setAttribute('class', 'mdc-card__primary-action');
+  cardAction.setAttribute('tabindex', '0');
+
+  let img = new Image();
+  getImageUrl(id).then(url => {
+    img.setAttribute('class', 'img-card');
+    img.alt = alt;
+    // console.log(url);
+    img.src = url;
+  });
+
+  cardAction.appendChild(img);
+  card.appendChild(cardAction);
+  return card;
+}
+
+window.onload = (function() {
+  document
+    .getElementById('newgame-button')
+    .addEventListener('click', function() {
+      document.getElementById('modal-wrap').style.display = 'flex';
+    });
+  Array.from(document.getElementsByClassName('modal-close')).forEach(elem => {
+    elem.addEventListener('click', function() {
+      document.getElementById('modal-wrap').style.display = 'none';
+    });
+  });
+  document.getElementById('check-button').addEventListener('click', function() {
+    showSpymaster = !showSpymaster;
+    this.classList.toggle('button-on');
+    this.innerHTML = showSpymaster ? 'Show Spymaster' : 'Show Player';
+    document.getElementById('game-board').classList.toggle('check');
+  });
+  document
+    .getElementById('button-newgame')
+    .addEventListener('click', function() {
+      document.getElementById('modal-wrap').style.display = 'none';
+      newGame();
+    });
+})();
