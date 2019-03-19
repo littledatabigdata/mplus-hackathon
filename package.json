@@ -11,7 +11,7 @@
     "url": "git+https://github.com/littledatabigdata/mplus-hackathon.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/littledatabigdata/mplus-hackathon/issues"
   },
@@ -19,6 +19,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4"
   }
 }

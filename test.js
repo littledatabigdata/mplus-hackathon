@@ -40,7 +40,7 @@ function newGame() {
   const categoryList = document.getElementById('categories-list');
   const category = categoryList.options[categoryList.selectedIndex].value;
   const seedInput = document.getElementById('seed-input').value;
-  getRandomImages(category, 25, seedInput, true).then(imageIds => {
+  getRandomImages(category, 25, seedInput).then(imageIds => {
     generateBoard(imageIds);
   });
 }
