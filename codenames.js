@@ -31,29 +31,45 @@ let redRemaining = 0;
 let blueRemaining = 0;
 let gameEnded = false;
 let showSpymaster = true;
+let seed = 5;
 
 function newGame() {
   redRemaining = 0;
   blueRemaining = 0;
   gameEnded = false;
-  clearBoard();
+  showSpymaster = true;
+  let checkBtn = document.getElementById('check-button');
+  checkBtn.classList.remove('button-on');
+  checkBtn.innerHTML = 'Show Spymaster';
+  document.getElementById('game-board').classList.remove('check');
+
   const categoryList = document.getElementById('categories-list');
   const category = categoryList.options[categoryList.selectedIndex].value;
-  const seedInput = document.getElementById('seed-input').value;
-  getRandomImages(category, 25, seedInput).then(imageIds => {
+  seed = hashCode(document.getElementById('seed-input').value) || 5;
+  getRandomImages(category, 25, seed).then(imageIds => {
     generateBoard(imageIds);
   });
 }
 
-function shuffle(array, seed) {
+// Random function using seed.
+function random() {
+  var x = Math.sin(seed++) * 10000;
+  return x - Math.floor(x);
+}
+
+// Returns a hash code for a string.
+function hashCode(s) {
+  let h;
+  for (let i = 0; i < s.length; i++)
+    h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+  return h;
+}
+
+function shuffle(array) {
   let currentIndex = array.length,
     temporaryValue,
     randomIndex;
-  seed = seed || 5;
-  let random = function() {
-    var x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
-  };
+
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
     // Pick a remaining element...
@@ -71,8 +87,7 @@ function getNewGameColours() {
   let newColours = colours.slice();
 
   // Randomize the double agent
-  //var coinFlip = Math.round(Math.random()); // random number 0 or 1
-  var coinFlip = 0;
+  let coinFlip = Math.round(random()); // random number 0 or 1
   newColours.push(extraColours[coinFlip]);
   return shuffle(newColours);
 }
@@ -85,6 +100,9 @@ function initializeRemaining(newColours) {
       blueRemaining += 1;
     }
   });
+
+  document.getElementById('red-counter').innerHTML = redRemaining;
+  document.getElementById('blue-counter').innerHTML = blueRemaining;
 }
 
 function clearBoard() {
@@ -97,8 +115,6 @@ function generateBoard(imageData) {
   let gameBoard = document.getElementById('game-board');
   let newColours = getNewGameColours();
   initializeRemaining(newColours);
-  document.getElementById('red-counter').innerHTML = redRemaining;
-  document.getElementById('blue-counter').innerHTML = blueRemaining;
 
   for (var i = 0; i < 25; ++i) {
     let colour = newColours.pop();
