@@ -58,12 +58,9 @@ function getRandomImages(category = 'Photography', count = 25, seed = false) {
 }
 
 function getImageUrl(id) {
-  console.log('getimageurl');
-  console.log(id);
   return collections
     .get(`/${id}`)
     .then(result => {
-      console.log('getimageurl result');
       if (result.status === 200) {
         let search = `og:image" content="`;
         let start = result.data.indexOf(search);
@@ -79,7 +76,6 @@ function getImageUrl(id) {
       }
     })
     .catch(err => {
-      console.log('getimageurl result error');
       console.log(err);
     });
 }
