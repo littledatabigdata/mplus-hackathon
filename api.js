@@ -10,8 +10,8 @@ let aj = axios.create({
 });
 
 let collections = axios.create({
-  baseURL: 'https://collections.mplus.org.hk/en/objects',
-  responseType: 'document'
+  baseURL:
+    'https://cors-anywhere.herokuapp.com/https://collections.mplus.org.hk/en/objects'
 });
 
 function getRandomImages(category = 'Photography', count = 25, seed = false) {
