@@ -1,3 +1,5 @@
+const MAX_COUNT = 5125;
+
 let aj = axios.create({
   baseURL: 'https://api.mplus.org.hk/graphql',
   timeout: 5000,
@@ -5,6 +7,11 @@ let aj = axios.create({
     'content-type': 'application/json',
     Authorization: localStorage.getItem('API')
   }
+});
+
+let collections = axios.create({
+  baseURL: 'https://collections.mplus.org.hk/en/objects',
+  responseType: 'document'
 });
 
 function getRandomImages(category = 'Photography', count = 25, seed = false) {
@@ -51,12 +58,41 @@ function getRandomImages(category = 'Photography', count = 25, seed = false) {
 }
 
 function getImageUrl(id) {
+  console.log('getimageurl');
+  console.log(id);
+  return collections
+    .get(`/${id}`)
+    .then(result => {
+      console.log('getimageurl result');
+      if (result.status === 200) {
+        let search = `og:image" content="`;
+        let start = result.data.indexOf(search);
+        let end = result.data.indexOf(`"`, start + search.length);
+        let url = result.data.slice(start + search.length, end);
+
+        if (url === '/emoji/frame-with-picture.png') {
+          console.log('no image found, retrying...');
+          return getImageUrl(Math.floor(Math.random() * MAX_COUNT));
+        }
+
+        return url;
+      }
+    })
+    .catch(err => {
+      console.log('getimageurl result error');
+      console.log(err);
+    });
+}
+
+/*
+function getImageUrl(id) {
   return axios.get(`http://localhost:3000/img/${id}`).then(result => {
     if (result.status === 200) {
       return result.data.data;
     }
   });
 }
+*/
 
 function getCategories() {
   const payload = {
