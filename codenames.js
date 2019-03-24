@@ -31,9 +31,9 @@ let redRemaining = 0;
 let blueRemaining = 0;
 let gameEnded = false;
 let showSpymaster = true;
-let seed = 5;
 
 function newGame() {
+  clearBoard();
   redRemaining = 0;
   blueRemaining = 0;
   gameEnded = false;
@@ -49,20 +49,6 @@ function newGame() {
   getRandomImages(category, 25, seed).then(imageIds => {
     generateBoard(imageIds);
   });
-}
-
-// Random function using seed.
-function random() {
-  var x = Math.sin(seed++) * 10000;
-  return x - Math.floor(x);
-}
-
-// Returns a hash code for a string.
-function hashCode(s) {
-  let h;
-  for (let i = 0; i < s.length; i++)
-    h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
-  return h;
 }
 
 function shuffle(array) {
@@ -116,12 +102,16 @@ function generateBoard(imageData) {
   let newColours = getNewGameColours();
   initializeRemaining(newColours);
 
+  let proms = [];
   for (var i = 0; i < 25; ++i) {
     let colour = newColours.pop();
     let { id, alt } = imageData.pop();
-    let card = createCard(id, colour, alt);
+    let { prom, card } = createCard(id, colour, alt);
+    proms.push(prom);
     gameBoard.appendChild(card);
   }
+
+  Promise.all(proms).then(() => console.log('done'));
 }
 
 function onCardClicked(colour) {
@@ -166,16 +156,15 @@ function createCard(id, colour, alt = '') {
   cardAction.setAttribute('tabindex', '0');
 
   let img = new Image();
-  getImageUrl(id).then(url => {
+  let prom = getImageUrl(id).then(url => {
     img.setAttribute('class', 'img-card');
     img.alt = alt;
-    // console.log(url);
     img.src = url;
   });
 
   cardAction.appendChild(img);
   card.appendChild(cardAction);
-  return card;
+  return { prom, card };
 }
 
 window.onload = (function() {
