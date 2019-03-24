@@ -69,7 +69,7 @@ function getImageUrl(id) {
 
         if (url === '/emoji/frame-with-picture.png') {
           console.log('no image found, retrying...');
-          return getImageUrl(Math.floor(Math.random() * MAX_COUNT));
+          return getImageUrl(Math.floor(random() * MAX_COUNT));
         }
 
         return url;
@@ -79,16 +79,6 @@ function getImageUrl(id) {
       console.log(err);
     });
 }
-
-/*
-function getImageUrl(id) {
-  return axios.get(`http://localhost:3000/img/${id}`).then(result => {
-    if (result.status === 200) {
-      return result.data.data;
-    }
-  });
-}
-*/
 
 function getCategories() {
   const payload = {
