@@ -187,6 +187,13 @@ window.onload = (function() {
   document
     .getElementById('button-newgame')
     .addEventListener('click', function() {
+      // Cancel axios requests from the previous game
+      if (cancels.length > 0) {
+        cancels.forEach(cancel => {
+          cancel('getImageUrl canceled');
+        });
+        cancels.length = 0;
+      }
       document.getElementById('modal-wrap').style.display = 'none';
       newGame();
     });

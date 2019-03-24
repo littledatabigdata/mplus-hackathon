@@ -1,4 +1,6 @@
 const MAX_COUNT = 5125;
+const CancelToken = axios.CancelToken;
+let cancels = [];
 
 let aj = axios.create({
   baseURL: 'https://api.mplus.org.hk/graphql',
@@ -59,7 +61,12 @@ function getRandomImages(category = 'Photography', count = 25, seed = false) {
 
 function getImageUrl(id) {
   return collections
-    .get(`/${id}`)
+    .get(`/${id}`, {
+      cancelToken: new CancelToken(function executor(c) {
+        // An executor function receives a cancel function as a parameter
+        cancels.push(c);
+      })
+    })
     .then(result => {
       if (result.status === 200) {
         let search = `og:image" content="`;
@@ -76,7 +83,11 @@ function getImageUrl(id) {
       }
     })
     .catch(err => {
-      console.log(err);
+      if (axios.isCancel(err)) {
+        console.log('Request canceled', err.message);
+      } else {
+        console.log(err);
+      }
     });
 }
 
