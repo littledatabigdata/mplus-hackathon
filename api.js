@@ -84,7 +84,7 @@ function getImageUrl(id) {
     })
     .catch(err => {
       if (axios.isCancel(err)) {
-        console.log('Request canceled', err.message);
+        console.log('getImageUrl canceled');
       } else {
         console.log(err);
       }

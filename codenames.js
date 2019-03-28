@@ -102,16 +102,17 @@ function generateBoard(imageData) {
   let newColours = getNewGameColours();
   initializeRemaining(newColours);
 
-  let proms = [];
+  // let proms = [];
   for (var i = 0; i < 25; ++i) {
     let colour = newColours.pop();
     let { id, alt } = imageData.pop();
-    let { prom, card } = createCard(id, colour, alt);
-    proms.push(prom);
+    let card = createCard(id, colour, alt);
+    // proms.push(prom);
     gameBoard.appendChild(card);
   }
 
-  Promise.all(proms).then(() => console.log('done'));
+  // Promise.all(proms).then(() => console.log('done'));
+  console.log('done');
 }
 
 function onCardClicked(colour) {
@@ -147,14 +148,20 @@ function createCard(id, colour, alt = '') {
   let card = document.createElement('div');
   card.setAttribute(
     'class',
-    'mdc-card mdc-elevation-transition ' + colour.class
+    'mdc-card mdc-elevation-transition card-with-text ' + colour.class
   );
+  card.setAttribute('tabindex', '0');
   card.addEventListener('click', onCardClicked(colour));
 
-  let cardAction = document.createElement('div');
-  cardAction.setAttribute('class', 'mdc-card__primary-action');
-  cardAction.setAttribute('tabindex', '0');
+  //let cardAction = document.createElement('div');
+  //cardAction.setAttribute('class', 'mdc-card__primary-action');
+  //cardAction.setAttribute('tabindex', '0');
 
+  let cardText = document.createElement('span');
+  cardText.setAttribute('class', 'card-text');
+  cardText.innerHTML = alt;
+
+  /* Disabling for copyright reasons
   let img = new Image();
   let prom = getImageUrl(id).then(url => {
     img.setAttribute('class', 'img-card');
@@ -163,8 +170,11 @@ function createCard(id, colour, alt = '') {
   });
 
   cardAction.appendChild(img);
-  card.appendChild(cardAction);
-  return { prom, card };
+  */
+
+  //cardAction.appendChild(cardText);
+  card.appendChild(cardText);
+  return card;
 }
 
 window.onload = (function() {
@@ -190,7 +200,7 @@ window.onload = (function() {
       // Cancel axios requests from the previous game
       if (cancels.length > 0) {
         cancels.forEach(cancel => {
-          cancel('getImageUrl canceled');
+          cancel();
         });
         cancels.length = 0;
       }

@@ -22,7 +22,7 @@ h3 {
 .mdc-card {
   overflow: hidden;
   min-width: 0;
-  background: #fdf5e6;
+  background-color: #ece1d5 !important;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
@@ -38,6 +38,24 @@ h3 {
 }
 .mdc-card.active img {
   display: none;
+}
+.card-with-text {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  outline-style: solid;
+  outline-offset: -10px;
+  outline-color: #dcc8b2;
+  outline-width: 3px;
+}
+.card-with-text.active {
+  outline-style: none;
+}
+.card-with-text:hover {
+  font-size: 1.1em;
+}
+.card-text {
+  padding: 10px 15px 10px 15px;
 }
 .check img {
   display: none;
